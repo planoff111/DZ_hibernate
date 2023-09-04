@@ -9,51 +9,49 @@ public class Service {
     final private UserDaoImpl userDao = new UserDaoImpl();
 
     public void saveCustomer(){
-        customerDao.customers().stream()
-                .forEach(customer -> customerDao.saveCustomer(customer));
+        customerDao.customers()
+                .forEach(customerDao::saveCustomer);
     }
 
     public void saveOrder(){
-        orderDao.orders().stream()
-                .forEach(order -> orderDao.saveOrder(order));
+        orderDao.orders()
+                .forEach(orderDao::saveOrder);
     }
 
     public void saveOrderDetails(){
-        orderDao.detailsOrder().stream()
-                .forEach(orderDetails -> orderDao.saveOrderDetails(orderDetails));
+        orderDao.detailsOrder()
+                .forEach(orderDao::saveOrderDetails);
     }
 
     public void saveProduct(){
-        productDao.products().stream()
-                .forEach(product -> productDao.saveProduct(product));
+        productDao.products()
+                .forEach(productDao::saveProduct);
 
     }
 
     public void saveUser(){
-        userDao.users().stream()
-                .forEach(user -> userDao.saveUser(user));
+        userDao.users()
+                .forEach(userDao::saveUser);
 
     }
 
     public void takeAllProducts(){
-        productDao.findAllProducts().stream()
+        productDao.findAllProducts()
                 .forEach(product -> System.out.println("Name  " + product.getName()
                 + " price " +  product.getPrice() + " Qnty " + product.getQuantity()));
     }
 
     public void takeQntyOfOrderForUser(){
-        orderDao.findQntyOfOrdersForUser().entrySet()
-                .forEach(q -> System.out.println("name customer " + q.getKey().getName() +
-                        " surname " + q.getKey().getSurname()
-                + " telephone " + q.getKey().getPhone() + " qnty of orders for user " + q.getValue() ));
+        orderDao.findQntyOfOrdersForUser().forEach((key, value) -> System.out.println("name customer " + key.getName() +
+                " surname " + key.getSurname()
+                + " telephone " + key.getPhone() + " qnty of orders for user " + value));
     }
 
     public void takeAllOrdersWithDetailsAscTime(){
-        orderDao.findAllOrdersDetailsByDate().entrySet()
-                .forEach(o-> System.out.println("name order " + o.getKey().getName()
-                + " name of cast " + o.getKey().getCustomer().getName()
-                + " coment "+ o.getKey().getDetails().getComment()
-                + " time placed " + o.getKey().getDetails().getTimePlaced()));
+        orderDao.findAllOrdersDetailsByDate().forEach((key, value) -> System.out.println("name order " + key.getName()
+                + " name of cast " + key.getCustomer().getName()
+                + " coment " + key.getDetails().getComment()
+                + " time placed " + key.getDetails().getTimePlaced()));
     }
 
     public void changeDataOrder(){
@@ -64,15 +62,15 @@ public class Service {
     }
 
     public void findAllOrders(){
-        orderDao.findAllOrders().stream()
+        orderDao.findAllOrders()
                 .forEach(o-> System.out.println(" name order " + o.getName()));
     }
 
     public void dataForAllCast(){
-        userDao.qntyOfProductForUser().entrySet().forEach(u-> System.out.println(" Username " + u.getKey().getUserName()
-        + " Email customer " + u.getKey().getEmail() + " RoleCustomer " + u.getKey().getRole()
-        + " name customer " + u.getKey().getCustomer().getName() + " surname " + u.getKey().getCustomer().getSurname()
-        + " phone " + u.getKey().getCustomer().getPhone() + " qnty of orders " + u.getValue()));
+        userDao.qntyOfProductForUser().forEach((key, value) -> System.out.println(" Username " + key.getUserName()
+                + " Email customer " + key.getEmail() + " RoleCustomer " + key.getRole()
+                + " name customer " + key.getCustomer().getName() + " surname " + key.getCustomer().getSurname()
+                + " phone " + key.getCustomer().getPhone() + " qnty of orders " + value));
 
     }
 }

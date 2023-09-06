@@ -14,14 +14,14 @@ import javax.persistence.*;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String name;
     private double price;
     private double quantity;
     @ManyToOne
     private Order order;
 
-    public Product( String name, double price, double quantity, Order order) {
+    public Product(String name, double price, double quantity, Order order) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;

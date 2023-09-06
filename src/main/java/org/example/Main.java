@@ -16,13 +16,16 @@ public class Main {
         service.saveUser();
         service.saveOrderDetails();
 
+        System.out.println("All pruducts");
         service.takeAllProducts();
+        System.out.println("Qnty of order for user");
         service.takeQntyOfOrderForUser();
+        System.out.println("order with detail by Time placed");
         service.takeAllOrdersWithDetailsAscTime();
+        System.out.println("Data for all cast ");
         service.dataForAllCast();
         service.changeDataOrder();
         service.findAllOrders();
-
 
     }
 

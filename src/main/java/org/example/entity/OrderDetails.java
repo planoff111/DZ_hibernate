@@ -16,7 +16,7 @@ import java.util.List;
 public class OrderDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @Column(name = "time_placed")
     private LocalDateTime timePlaced;
     private String comment;

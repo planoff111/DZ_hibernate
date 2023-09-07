@@ -57,9 +57,9 @@ public class Service {
     }
 
     public void takeQntyOfOrderForUser() {
-        orderDao.findQntyOfOrdersForUser().forEach((key, value) -> System.out.println("name customer " + key.getName() +
-                " surname " + key.getSurname()
-                + " telephone " + key.getPhone() + " qnty of orders for user " + value));
+        orderDao.findQntyOfOrdersForUser().forEach((o -> System.out.println("name customer " + o.getName() +
+                " surname " + o.getSurname()
+                + " telephone " + o.getPhone() + " qnty of orders for user " + o.getOrders().size())));
     }
 
     public void takeAllOrdersWithDetailsAscTime() {

@@ -44,24 +44,10 @@ public class OrderDaoImpl implements OrderDao {
         return customers;
     }
 
-    public HashMap<Customer, Integer> findQntyOfOrdersForUser() {
+    public List<Customer> findQntyOfOrdersForUser() {
         final Session session = factory.openSession();
         final Transaction transaction = session.beginTransaction();
-        List<Customer> customers = new ArrayList<>();
-        customers.add(session.get(Customer.class, 1));
-        customers.add(session.get(Customer.class, 2));
-        customers.add(session.get(Customer.class, 3));
-        customers.add(session.get(Customer.class, 4));
-        customers.add(session.get(Customer.class, 5));
-
-        HashMap<Customer, Integer> customerQnty = new HashMap<>();
-        for (Customer customer : customers) {
-            List<Order> orders = session.createQuery("FROM Order o where o.customer.id =:id ")
-                    .setParameter("id", customer.getId()).getResultList();
-            int qnty = orders.size();
-            customerQnty.put(customer, qnty);
-
-        }
+        List<Customer> customerQnty = session.createQuery("from Customer c join fetch c.orders").getResultList();
         transaction.commit();
         session.close();
 

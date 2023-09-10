@@ -47,7 +47,7 @@ public class OrderDaoImpl implements OrderDao {
     public List<Customer> findQntyOfOrdersForUser() {
         final Session session = factory.openSession();
         final Transaction transaction = session.beginTransaction();
-        List<Customer> customerQnty = session.createQuery("from Customer c join fetch c.orders").getResultList();
+        List<Customer> customerQnty = session.createQuery("from Customer ").getResultList();
         transaction.commit();
         session.close();
 

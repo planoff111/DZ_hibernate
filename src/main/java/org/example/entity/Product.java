@@ -3,6 +3,7 @@ package org.example.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -18,10 +19,10 @@ public class Product {
     private String name;
     private double price;
     private double quantity;
-    @ManyToOne
-    private Order order;
+    @ManyToMany
+    private List<Order> order;
 
-    public Product(String name, double price, double quantity, Order order) {
+    public Product(String name, double price, double quantity, List<Order> order) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;

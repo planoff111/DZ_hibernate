@@ -25,21 +25,13 @@ public class UserDaoImpl implements UserDao {
 
     }
 
-    public HashMap<User, Integer> qntyOfProductForUser() {
+    public List<Customer> qntyOfProductForUser() {
         final Session session = factory.openSession();
         final Transaction t = session.beginTransaction();
-        List<User> users = session.createQuery("FROM User ").getResultList();
-        HashMap<User, Integer> usersQnty = new HashMap<>();
-        for (User user : users) {
-            List<Product> products = session.createQuery("FROM Product o where o.order.id =:id ")
-                    .setParameter("id", user.getCustomer().getId()).getResultList();
-            int qnty = products.size();
-            usersQnty.put(user, qnty);
-        }
+        List<Customer> users = session.createQuery("FROM Customer  ").getResultList();
         t.commit();
         session.close();
-
-        return usersQnty;
+        return users;
     }
 
     @Override

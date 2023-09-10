@@ -20,7 +20,7 @@ public class Customer {
     private String name;
     private String surname;
     private String phone;
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer",fetch = FetchType.EAGER)
     private List<Order> orders;
     @OneToOne(mappedBy = "customer")
     private User user;

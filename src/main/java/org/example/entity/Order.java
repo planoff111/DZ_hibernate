@@ -23,7 +23,7 @@ public class Order {
     private Customer customer;
     @OneToOne(mappedBy = "order")
     OrderDetails details;
-    @ManyToMany
+    @ManyToMany(mappedBy = "order")
     List<Product> products;
 
     public Order(String name, double totalSum, Customer customer) {

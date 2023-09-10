@@ -20,6 +20,7 @@ public class CustomerDaoImpl implements CustomerDao {
         session.save(customer);
         t.commit();
         session.close();
+
     }
 
     @Override

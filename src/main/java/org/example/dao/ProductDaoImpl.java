@@ -1,5 +1,7 @@
 package org.example.dao;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.entity.Order;
 import org.example.entity.Product;
 import org.example.utill.HibernateUtils;
@@ -11,13 +13,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDaoImpl implements ProductDao {
+    private static final Logger logger = LogManager.getLogger(ProductDaoImpl.class);
     final SessionFactory factory = HibernateUtils.getSessionFactory();
 
     @Override
     public void saveProduct(Product product) {
         final Session session = factory.openSession();
         final Transaction t = session.beginTransaction();
-        session.save(product);
+        try{
+            session.save(product);
+        }catch (Exception e){
+            logger.error("product" + product.getName() + " wasnt saved");
+        }
+
         t.commit();
         session.close();
 

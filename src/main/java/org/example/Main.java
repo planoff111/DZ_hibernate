@@ -1,20 +1,26 @@
 package org.example;
 
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.service.Service;
 import org.example.utill.HibernateUtils;
 
 
 public class Main {
+    private static final Logger logger = LogManager.getLogger(Main.class);
+
     public static void main(String[] args) {
         HibernateUtils.getSessionFactory();
         Service service = new Service();
-
+        /*
         service.saveCustomer();
         service.saveOrder();
         service.saveProduct();
         service.saveUser();
-        service.saveOrderDetails();
+        service.saveOrderDetails();*/
+        service.saveData();
+
 
         System.out.println("All pruducts");
         service.takeAllProducts();

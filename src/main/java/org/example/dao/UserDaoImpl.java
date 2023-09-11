@@ -1,5 +1,7 @@
 package org.example.dao;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.entity.Customer;
 import org.example.entity.Product;
 import org.example.entity.User;
@@ -14,12 +16,18 @@ import java.util.List;
 
 public class UserDaoImpl implements UserDao {
     final SessionFactory factory = HibernateUtils.getSessionFactory();
+    private static final Logger logger = LogManager.getLogger(UserDaoImpl.class);
 
     @Override
     public void saveUser(User user) {
         final Session session = factory.openSession();
         final Transaction t = session.beginTransaction();
-        session.save(user);
+        try{
+            session.save(user);
+        }catch (Exception e){
+            logger.error("User " + user.getCustomer().getName() + " wasnt saved" );
+        }
+        logger.info("user has been saved");
         t.commit();
         session.close();
 

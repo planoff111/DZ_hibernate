@@ -7,6 +7,8 @@ import org.example.utill.HibernateUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -16,13 +18,20 @@ import java.util.Scanner;
 
 public class OrderDaoImpl implements OrderDao {
     final SessionFactory factory = HibernateUtils.getSessionFactory();
+    private static final Logger logger = LogManager.getLogger(OrderDaoImpl.class);
 
     @Override
     public void saveOrder(Order order) {
+
         final Session session = factory.openSession();
         final Transaction t = session.beginTransaction();
-        session.save(order);
+        try{
+            session.save(order);
+        }catch (Exception e){
+            logger.error("order " + order.getName() + "  wast saved");
+        }
         t.commit();
+        logger.info("Order has been saved ");
         session.close();
     }
 

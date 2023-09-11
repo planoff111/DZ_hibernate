@@ -125,8 +125,8 @@ public class Service {
             t.commit();
             logger.info("data saved succesfully in tables");
         }catch (Exception e){
-            t.rollback();
             logger.fatal("fatal error on stage save in tables (look at errors)");
+            t.rollback();
         }
 
         session.close();

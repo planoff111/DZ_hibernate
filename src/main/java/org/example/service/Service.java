@@ -32,6 +32,7 @@ public class Service {
         productDao.findAllProducts()
                 .forEach(product -> System.out.println("Name  " + product.getName()
                         + " price " + product.getPrice() + " Qnty " + product.getQuantity()));
+
     }
 
     public void takeQntyOfOrderForUser() {
@@ -79,11 +80,13 @@ public class Service {
 
 
     public void startSaveData(){
+        logger.info("Star save to DB");
         List<OrderDetails> details = utils.createOrderDetails();
         List<Customer> customers = utils.customersCreate();
         List<Product> products = utils.createProducts();
         utils.createOrders(customers, details,products);
         utils.createUser(customers);
+
     }
 
 

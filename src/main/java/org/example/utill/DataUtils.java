@@ -117,6 +117,7 @@ public class DataUtils {
         products.add(new Product("Product 20", 24.5, 30.0));
         products.forEach(productDao::saveProduct);
         return products;
+
     }
 
     public void createUser(List<Customer> customers) {

@@ -17,7 +17,7 @@ public class ProductDaoImpl implements ProductDao {
     final SessionFactory factory = HibernateUtils.getSessionFactory();
 
     @Override
-    public void saveProduct(Product product) {
+    public  void saveProduct(Product product) {
         final Session session = factory.openSession();
         final Transaction t = session.beginTransaction();
         try{

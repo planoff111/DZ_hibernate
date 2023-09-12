@@ -19,13 +19,13 @@ public class Product {
     private String name;
     private double price;
     private double quantity;
-    @ManyToMany
+    @ManyToMany()
     private List<Order> order;
 
-    public Product(String name, double price, double quantity, List<Order> order) {
+    public Product(String name, double price, double quantity) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
-        this.order = order;
+
     }
 }

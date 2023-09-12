@@ -19,17 +19,19 @@ public class Order {
     private String name;
     @Column(name = "total_sum")
     private double totalSum;
-    @ManyToOne
+    @ManyToOne()
     private Customer customer;
-    @OneToOne(mappedBy = "order")
+    @OneToOne()
     OrderDetails details;
     @ManyToMany(mappedBy = "order")
     List<Product> products;
 
-    public Order(String name, double totalSum, Customer customer) {
+    public Order(String name, double totalSum, Customer customer, OrderDetails details,List<Product> products) {
         this.name = name;
         this.totalSum = totalSum;
         this.customer = customer;
+        this.details = details;
+        this.products = products;
 
     }
 

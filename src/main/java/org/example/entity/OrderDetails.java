@@ -22,13 +22,13 @@ public class OrderDetails {
     private String comment;
     @Column(name = "time_updated")
     private LocalDateTime timeUpdated;
-    @OneToOne
+    @OneToOne(mappedBy = "details")
     Order order;
 
-    public OrderDetails(LocalDateTime timePlaced, String comment, LocalDateTime timeUpdated, Order order) {
+    public OrderDetails(LocalDateTime timePlaced, String comment, LocalDateTime timeUpdated) {
         this.timePlaced = timePlaced;
         this.comment = comment;
         this.timeUpdated = timeUpdated;
-        this.order = order;
+
     }
 }

@@ -34,9 +34,20 @@ public class CustomerDaoImpl implements CustomerDao {
     @Override
     public List<Customer> findAllCust() {
         final Session session = factory.openSession();
+        final Transaction t = session.beginTransaction();
         List<Customer> customers = session.createQuery("FROM Customer").getResultList();
+        t.commit();
         session.close();
         return customers;
+    }
+
+    public List<Customer> qntyOfProductForUser() {
+        final Session session = factory.openSession();
+        final Transaction t = session.beginTransaction();
+        List<Customer> users = session.createQuery("FROM Customer  ").getResultList();
+        t.commit();
+        session.close();
+        return users;
     }
 
 

@@ -70,7 +70,7 @@ public class Service {
     }
 
     public void dataForAllCast() {
-        userDao.qntyOfProductForUser().forEach((data) -> System.out.println("Username " + data.getUser().getUserName()
+        customerDao.qntyOfProductForUser().forEach((data) -> System.out.println("Username " + data.getUser().getUserName()
                 + " Email " + data.getUser().getEmail() + " Role " + data.getUser().getRole()
                 + " name " + data.getUser().getCustomer().getName() + " surname " + data.getSurname()
                 + " phone " + data.getPhone() + " qnty of orders " + data
